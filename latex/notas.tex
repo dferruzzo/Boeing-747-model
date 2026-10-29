@@ -1,0 +1,153 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+
+\geometry{margin=2.5cm}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  pdftitle={Título do Artigo}
+}
+
+\DeclareMathOperator{\sen}{sen}
+
+\title{Anotações}
+\author{Diego Ferruzzo\\
+  \small UFABC \\
+  \small \texttt{diego.ferruzzo@ufabc.edu.br}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Anotações sobre o modelo bo Boeing 747.
+\end{abstract}
+
+\noindent\textbf{Palavras-chave:} Boeing 747; modelo não linear; Simulação.
+
+\section{Introdução}
+Apresente o contexto, a motivação e o objetivo do trabalho. Explique também a
+organização das seções seguintes.
+
+\section{Modelo do Boeing 747}
+Segundo \cite{franklin2013,brysonControlSpacecraftAircraft1994},
+Reescrevemos as equações de movimento como,
+\begin{align}
+    \begin{split}
+        m(\dot{U} + qW - rV) &= X - mg\sen\theta + \kappa T \cos\theta,\\
+        m(\dot{V} + rU - pW) &= Y + mg cos\theta \sen\phi,\\
+        m(\dot{W} + pV - qU) &= Z + mg cos\theta \cos\phi - \kappa T \sen\theta,\\
+        I_x \dot{p} + I_{xz} \dot{r} + (I_z - I_y)qr - I_{xz}qp &= L,\\
+        I_y \dot{q} + (I_x - I_z)pr + I_{xz}(r^2 - p^2) &= M,\\
+        I_z \dot{r} + I_{xz} \dot{p} + (I_y - I_x)qp - I_{xz}qr &= N,
+    \end{split}
+    \label{eq:boeing747-nonlinear-model_1}
+\end{align}
+Reescrevemos as equações de movimento \eqref{eq:boeing747-nonlinear-model_1} como,
+\begin{align}
+    \begin{split}
+        m(\dot{U} + qW - rV) &= X - mg\sen\theta + \kappa T \cos\theta,\\
+        \dot{U} + qW - rV &= X/m - g\sen\theta + (1/m)\kappa T \cos\theta,\\
+        \dot{U} &= - g\sen\theta + (1/m)\kappa T \cos\theta + X/m - qW + rV ,\\
+        %
+        m(\dot{V} + rU - pW) &= Y + mg cos\theta \sen\phi,\\
+        \dot{V} + rU - pW &= Y/m + g cos\theta \sen\phi,\\
+        \dot{V} &= g cos\theta \sen\phi + Y/m - rU + pW ,\\
+        %
+        m(\dot{W} + pV - qU) &= Z + mg cos\theta \cos\phi - \kappa T \sen\theta,\\
+        \dot{W} + pV - qU &= Z/m + g cos\theta \cos\phi - (1/m)\kappa T \sen\theta,\\
+        \dot{W} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta + Z/m  - pV + qU ,\\
+        %
+        I_x \dot{p} + I_{xz} \dot{r} + (I_z - I_y)qr - I_{xz}qp &= L,\\
+        %
+        I_y \dot{q} + (I_x - I_z)pr + I_{xz}(r^2 - p^2) &= M,\\
+        I_y \dot{q} &= M - (I_x - I_z)pr - I_{xz}(r^2 - p^2) ,\\
+        \dot{q} &= M/I_y  - ((I_x - I_z)/I_y) pr - (I_{xz}/I_y) (r^2 - p^2) ,\\
+        %
+        I_z \dot{r} + I_{xz} \dot{p} + (I_y - I_x)qp - I_{xz}qr &= N,
+    \end{split}
+    \label{eq:boeing747-nonlinear-model_2}
+\end{align}
+das duas equações a seguir determinamos $\dot{p}$ e $\dot{r}$,
+\begin{align}
+    \begin{split}
+       I_x \dot{p} + I_{xz} \dot{r} + (I_z - I_y)qr + I_{xz}qp &= L,\\
+       I_z \dot{r} + I_{xz} \dot{p} + (I_y - I_x)qp - I_{xz}qr &= N,\\
+    \end{split}
+    \label{eq:pr_acopladas}
+\end{align}
+Multiplicando a primeira equação por $I_z$ e a segunda por $I_{xz}$, temos:
+\begin{align*}
+    \begin{split}
+        I_zI_x \dot{p} + I_zI_{xz} \dot{r} + I_z(I_z - I_y)qr + I_zI_{xz}qp &= I_zL,\\
+        I_{xz}I_z \dot{r} + I_{xz}^2 \dot{p} + I_{xz}(I_y - I_x)qp - I_{xz}^2qr &=I_{xz}N,\\
+    \end{split}
+\end{align*}
+Subtraindo a segunda equação da primeira, temos:
+\begin{align*}
+         (I_zI_x - I_{xz}^2) \dot{p} + (I_z(I_z - I_y) + I_{xz}^2)qr + (I_zI_{xz} - I_{xz}(I_y - I_x))qp &= I_zL - I_{xz}N,
+\end{align*}
+Isolando $\dot{p}$, temos:
+\begin{align*}
+         (I_zI_x - I_{xz}^2) \dot{p} &= I_zL - I_{xz}N - (I_z(I_z - I_y) + I_{xz}^2)qr - (I_zI_{xz} - I_{xz}(I_y - I_x))qp,
+\end{align*}
+\begin{align*}
+         \dot{p} &=\left(\dfrac{1}{I_zI_x - I_{xz}^2}\right)\left( I_zL - I_{xz}N - (I_z(I_z - I_y) + I_{xz}^2)qr - (I_zI_{xz} - I_{xz}(I_y - I_x))qp\right),
+\end{align*}
+\begin{align*}
+    \boxed{\dot{p} =\left(\dfrac{1}{I_zI_x - I_{xz}^2}\right)\left( I_zL - I_{xz}N - (I_z(I_z - I_y) + I_{xz}^2)qr - I_{xz}(I_z -I_y + I_x)qp\right)},
+\end{align*}
+Para obter \(\dot{r}\), multiplicamos a primeira em equação, \eqref{eq:pr_acopladas}, por \(I_{xz}\) e a segunda por \(I_x\):
+\begin{align*}
+    \begin{split}
+       I_{xz}I_x \dot{p} + I_{xz}^2 \dot{r} + I_{xz}(I_z - I_y)qr + I_{xz}^2 qp &= I_{xz} L,\\
+       I_xI_z \dot{r} + I_xI_{xz} \dot{p} + I_x(I_y - I_x) qp - I_xI_{xz} qr &= I_x N,
+    \end{split}
+\end{align*}
+Substituindo a segunda equação na primeira, temos:
+\begin{align*}
+        (I_{xz}^2-I_xI_z)\dot{r} + (I_{xz}(I_z - I_y) +  I_xI_{xz}) qr + (I_{xz}^2  - I_x(I_y - I_x)) qp &= I_{xz} L - I_x N,
+   \end{align*}
+\begin{align*}
+        (I_{xz}^2-I_xI_z)\dot{r} &= I_{xz} L - I_x N - (I_{xz}(I_z - I_y) +  I_xI_{xz}) qr - (I_{xz}^2  - I_x(I_y - I_x)) qp ,
+   \end{align*}
+\begin{align*}
+    \boxed{\dot{r} = \left(\dfrac{1}{I_{xz}^2-I_xI_z}\right)\left(I_{xz} L - I_x N - (I_{xz}(I_z - I_y) +  I_xI_{xz}) qr - (I_{xz}^2  - I_x(I_y - I_x)) qp\right),}
+   \end{align*}
+Consequentemente, as equações de movimento podem ser reescritas como:
+\begin{align}
+    \begin{split}
+        \dot{U} &= - g\sen\theta + (1/m)\kappa T \cos\theta - qW + rV + X/m  ,\\
+        \dot{V} &= g cos\theta \sen\phi  - rU + pW + Y/m\\
+        \dot{W} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta  - pV + qU + Z/m ,\\
+        \dot{p} & =\left(\dfrac{1}{I_zI_x - I_{xz}^2}\right)\left( I_zL - I_{xz}N - (I_z(I_z - I_y) + I_{xz}^2)qr - I_{xz}(I_z -I_y + I_x)qp\right),\\
+        \dot{q} &= M/I_y  - ((I_x - I_z)/I_y) pr - (I_{xz}/I_y) (r^2 - p^2) ,\\
+        \dot{r} &= \left(\dfrac{1}{I_{xz}^2-I_xI_z}\right)\left(I_{xz} L - I_x N - (I_{xz}(I_z - I_y) +  I_xI_{xz}) qr - (I_{xz}^2  - I_x(I_y - I_x)) qp\right).
+    \end{split}
+    \label{eq:boeing747-nonlinear-model_3}
+\end{align}
+Segundo Bryson \cite{brysonControlSpacecraftAircraft1994}, a relação entre as variações dos ângulos de Euler e as velocidades angulares do corpo é dada por:
+\begin{align}
+    \begin{split}
+        \dot{\phi} &= p + q\sen\phi\tan\theta + r\cos\phi\tan\theta,\\
+        \dot{\theta} &= q\cos\phi - r\sen\phi,\\
+        \dot{\psi} &= q\sen\phi/\cos\theta + r\cos\phi/\cos\theta.
+    \end{split}
+    \label{eq:boeing747-euler-angles}
+\end{align}
+\bibliographystyle{plain}
+\bibliography{referencias}
+
+\end{document}

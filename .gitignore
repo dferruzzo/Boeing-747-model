@@ -1,0 +1,36 @@
+# MATLAB
+*.asv
+*.autosave
+*.m~
+*.mex*
+*.slxc
+*.slx.r*
+*.slx.tmp
+*.sldd
+*.tmp
+
+# GNU Octave
+.octave_hist
+octave-workspace
+
+# Jupyter
+.ipynb_checkpoints/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex
+*.synctex.gz
+*.toc
+*.xdv
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
