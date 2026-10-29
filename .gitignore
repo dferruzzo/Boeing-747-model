@@ -30,6 +30,7 @@ octave-workspace
 *.xdv
 
 # Editor and operating-system files
+.gitignore
 .DS_Store
 Thumbs.db
 .vscode/
