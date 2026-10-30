@@ -3,16 +3,22 @@
 % Autor: Diego Ferruzzo 
 % Data: 28/10/2026
 % =========================================================================
+disp('Adicionar paths para as funçoes auxiliares');
+addpath('../Runge-Kutta-Matlab/');
+addpath('../Boeing-747-Matlab/');
+disp('Feito!');
+%
 clear;
 close all;
 clc;
 % 
+disp('Simulaçao de um sistema de primeira ordem com controlador PID filtrado');
 % Definiçao de um sistema de primeira ordem
 function dy = primeira_ordem(y,u)
     a = 1;
     dy = a*y + u;
 end
-% 
+%
 % parametros da simulaçao
 t0 = 0;
 tf = 10;
@@ -52,7 +58,13 @@ for i=1:n-1
     [t(i+1), y(i+1)] = rk4(f, t(i), y(i), h);
 
 end
+
+disp('Feito!');
+
 %% graficos
+
+disp('Gerando graficos...');
+
 figure(1);
 plot(t,y,'-b');
 hold on;
@@ -61,3 +73,5 @@ plot(t,u,'-g');
 plot(t,r,'-k');
 legend('y(t)','r(t)','u(t)','r(t)');
 grid on;
+
+disp('Feito!');
