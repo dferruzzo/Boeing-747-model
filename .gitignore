@@ -35,3 +35,6 @@ octave-workspace
 Thumbs.db
 .vscode/
 .idea/
+
+# Python virtual environments
+.venv/
