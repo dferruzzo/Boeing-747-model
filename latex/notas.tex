@@ -80,7 +80,17 @@ Reescrevemos as equações de movimento \eqref{eq:boeing747-nonlinear-model_1} c
     \end{split}
     \label{eq:boeing747-nonlinear-model_2}
 \end{align}
-das duas equações a seguir determinamos $\dot{p}$ e $\dot{r}$,
+
+As equações de movimento translacionais são:
+\begin{align}
+  \begin{split}
+    \dot{U} &= - g\sen\theta + (1/m)\kappa T \cos\theta + X/m - qW + rV,\\
+    \dot{V} &= g cos\theta \sen\phi + Y/m - rU + pW ,\\
+    \dot{W} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta + Z/m  - pV + qU.
+  \end{split}
+  \label{eq:boeing747-translationsla-dynamics}
+\end{align}
+Das duas equações a seguir determinamos $\dot{p}$ e $\dot{r}$,
 \begin{align}
     \begin{split}
        I_x \dot{p} + I_{xz} \dot{r} + (I_z - I_y)qr + I_{xz}qp &= L,\\
@@ -147,6 +157,26 @@ Segundo Bryson \cite{brysonControlSpacecraftAircraft1994}, a relação entre as 
     \end{split}
     \label{eq:boeing747-euler-angles}
 \end{align}
+
+\section{Dinâmica completa}
+\label{sec:Boeing747DinTotal}
+A  dinâmica total é dada por:
+
+\begin{align}
+  \begin{split}
+    \dot{U} &= - g\sen\theta + (1/m)\kappa T \cos\theta + X/m - qW + rV,\\
+    \dot{V} &= g cos\theta \sen\phi + Y/m - rU + pW,\\
+    \dot{W} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta + Z/m  - pV + qU,\\
+              \dot{\phi} &= p + q\sen\phi\tan\theta + r\cos\phi\tan\theta,\\
+        \dot{\theta} &= q\cos\phi - r\sen\phi,\\
+        \dot{\psi} &= q\sen\phi/\cos\theta + r\cos\phi/\cos\theta,\\
+        \dot{p} & =\left(\dfrac{1}{I_zI_x - I_{xz}^2}\right)\left( I_zL - I_{xz}N - (I_z(I_z - I_y) + I_{xz}^2)qr - I_{xz}(I_z -I_y + I_x)qp\right),\\
+        \dot{q} &= M/I_y  - ((I_x - I_z)/I_y) pr - (I_{xz}/I_y) (r^2 - p^2) ,\\
+        \dot{r} &= \left(\dfrac{1}{I_{xz}^2-I_xI_z}\right)\left(I_{xz} L - I_x N - (I_{xz}(I_z - I_y) +  I_xI_{xz}) qr - (I_{xz}^2  - I_x(I_y - I_x)) qp\right).
+  \end{split}
+  \label{eq:Boeing747FullDyn}
+\end{align}   
+
 \bibliographystyle{plain}
 \bibliography{referencias}
 
