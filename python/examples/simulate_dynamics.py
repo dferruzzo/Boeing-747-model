@@ -6,7 +6,7 @@ Vector = NDArray[np.float64]
 import matplotlib.pyplot as plt
 #from typing import Callable
 
-from boeing747_dynamics import Boeing747EulerDynamics, Boeing747RotationalDynamics, Boeing747TranslationalDynamics
+from boeing747.boeing747_dynamics import Boeing747EulerDynamics, Boeing747RotationalDynamics, Boeing747TranslationalDynamics
 import runge_kutta as rk
 from typing import cast
 

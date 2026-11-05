@@ -46,9 +46,9 @@ Segundo \cite{franklin2013,brysonControlSpacecraftAircraft1994},
 Reescrevemos as equações de movimento como,
 \begin{align}
     \begin{split}
-        m(\dot{U} + qW - rV) &= X - mg\sen\theta + \kappa T \cos\theta,\\
-        m(\dot{V} + rU - pW) &= Y + mg cos\theta \sen\phi,\\
-        m(\dot{W} + pV - qU) &= Z + mg cos\theta \cos\phi - \kappa T \sen\theta,\\
+        m(\dot{u} + qw - rv) &= X - mg\sen\theta + \kappa T \cos\theta,\\
+        m(\dot{v} + ru - pw) &= Y + mg cos\theta \sen\phi,\\
+        m(\dot{w} + pv - qu) &= Z + mg cos\theta \cos\phi - \kappa T \sen\theta,\\
         I_x \dot{p} + I_{xz} \dot{r} + (I_z - I_y)qr - I_{xz}qp &= L,\\
         I_y \dot{q} + (I_x - I_z)pr + I_{xz}(r^2 - p^2) &= M,\\
         I_z \dot{r} + I_{xz} \dot{p} + (I_y - I_x)qp - I_{xz}qr &= N,
@@ -58,17 +58,17 @@ Reescrevemos as equações de movimento como,
 Reescrevemos as equações de movimento \eqref{eq:boeing747-nonlinear-model_1} como,
 \begin{align}
     \begin{split}
-        m(\dot{U} + qW - rV) &= X - mg\sen\theta + \kappa T \cos\theta,\\
-        \dot{U} + qW - rV &= X/m - g\sen\theta + (1/m)\kappa T \cos\theta,\\
-        \dot{U} &= - g\sen\theta + (1/m)\kappa T \cos\theta + X/m - qW + rV ,\\
+        m(\dot{u} + qw - rv) &= X - mg\sen\theta + \kappa T \cos\theta,\\
+        \dot{u} + qw - rv &= X/m - g\sen\theta + (1/m)\kappa T \cos\theta,\\
+        \dot{u} &= - g\sen\theta + (1/m)\kappa T \cos\theta + X/m - qw + rv ,\\
         %
-        m(\dot{V} + rU - pW) &= Y + mg cos\theta \sen\phi,\\
-        \dot{V} + rU - pW &= Y/m + g cos\theta \sen\phi,\\
-        \dot{V} &= g cos\theta \sen\phi + Y/m - rU + pW ,\\
+        m(\dot{v} + ru - pw) &= Y + mg cos\theta \sen\phi,\\
+        \dot{v} + ru - pw &= Y/m + g cos\theta \sen\phi,\\
+        \dot{v} &= g cos\theta \sen\phi + Y/m - ru + pw ,\\
         %
-        m(\dot{W} + pV - qU) &= Z + mg cos\theta \cos\phi - \kappa T \sen\theta,\\
-        \dot{W} + pV - qU &= Z/m + g cos\theta \cos\phi - (1/m)\kappa T \sen\theta,\\
-        \dot{W} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta + Z/m  - pV + qU ,\\
+        m(\dot{w} + pv - qu) &= Z + mg cos\theta \cos\phi - \kappa T \sen\theta,\\
+        \dot{w} + pv - qu &= Z/m + g cos\theta \cos\phi - (1/m)\kappa T \sen\theta,\\
+        \dot{w} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta + Z/m  - pv + qu ,\\
         %
         I_x \dot{p} + I_{xz} \dot{r} + (I_z - I_y)qr - I_{xz}qp &= L,\\
         %
@@ -84,9 +84,9 @@ Reescrevemos as equações de movimento \eqref{eq:boeing747-nonlinear-model_1} c
 As equações de movimento translacionais são:
 \begin{align}
   \begin{split}
-    \dot{U} &= - g\sen\theta + (1/m)\kappa T \cos\theta + X/m - qW + rV,\\
-    \dot{V} &= g cos\theta \sen\phi + Y/m - rU + pW ,\\
-    \dot{W} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta + Z/m  - pV + qU.
+    \dot{u} &= - g\sen\theta + (1/m)\kappa T \cos\theta + X/m - qw + rv,\\
+    \dot{v} &= g cos\theta \sen\phi + Y/m - rU + pW ,\\
+    \dot{w} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta + Z/m  - pv + qu.
   \end{split}
   \label{eq:boeing747-translationsla-dynamics}
 \end{align}
@@ -139,9 +139,9 @@ Substituindo a segunda equação na primeira, temos:
 Consequentemente, as equações de movimento podem ser reescritas como:
 \begin{align}
     \begin{split}
-        \dot{U} &= - g\sen\theta + (1/m)\kappa T \cos\theta - qW + rV + X/m  ,\\
-        \dot{V} &= g cos\theta \sen\phi  - rU + pW + Y/m\\
-        \dot{W} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta  - pV + qU + Z/m ,\\
+        \dot{u} &= - g\sen\theta + (1/m)\kappa T \cos\theta - qw + rv + X/m  ,\\
+        \dot{v} &= g cos\theta \sen\phi  - ru + pw + Y/m\\
+        \dot{w} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta  - pv + qu + Z/m ,\\
         \dot{p} & =\left(\dfrac{1}{I_zI_x - I_{xz}^2}\right)\left( I_zL - I_{xz}N - (I_z(I_z - I_y) + I_{xz}^2)qr - I_{xz}(I_z -I_y + I_x)qp\right),\\
         \dot{q} &= M/I_y  - ((I_x - I_z)/I_y) pr - (I_{xz}/I_y) (r^2 - p^2) ,\\
         \dot{r} &= \left(\dfrac{1}{I_{xz}^2-I_xI_z}\right)\left(I_{xz} L - I_x N - (I_{xz}(I_z - I_y) +  I_xI_{xz}) qr - (I_{xz}^2  - I_x(I_y - I_x)) qp\right).
@@ -158,15 +158,15 @@ Segundo Bryson \cite{brysonControlSpacecraftAircraft1994}, a relação entre as 
     \label{eq:boeing747-euler-angles}
 \end{align}
 
-\section{Dinâmica completa}
-\label{sec:Boeing747DinTotal}
+\subsection{Dinâmica completa}
+\label{subsection:Boeing747DinTotal}
 A  dinâmica total é dada por:
 
 \begin{align}
   \begin{split}
-    \dot{U} &= - g\sen\theta + (1/m)\kappa T \cos\theta + X/m - qW + rV,\\
-    \dot{V} &= g cos\theta \sen\phi + Y/m - rU + pW,\\
-    \dot{W} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta + Z/m  - pV + qU,\\
+    \dot{u} &= - g\sen\theta + (1/m)\kappa T \cos\theta + X/m - qw + rv,\\
+    \dot{v} &= g cos\theta \sen\phi + Y/m - ru + pw,\\
+    \dot{w} &= g cos\theta \cos\phi - (1/m)\kappa T \sen\theta + Z/m  - pv + qu,\\
               \dot{\phi} &= p + q\sen\phi\tan\theta + r\cos\phi\tan\theta,\\
         \dot{\theta} &= q\cos\phi - r\sen\phi,\\
         \dot{\psi} &= q\sen\phi/\cos\theta + r\cos\phi/\cos\theta,\\
@@ -177,7 +177,109 @@ A  dinâmica total é dada por:
   \label{eq:Boeing747FullDyn}
 \end{align}   
 
+\section{Dinâmica Linear}
+\label{sec:DinamicaLinear}
+
+Segundo \cite{franklin2013,brysonControlSpacecraftAircraft1994}, em estado estacionário, em voo rectilineo, temos que \(\dot{u}=\dot{v}=\dot{w}=\dot{p}=\dot{q}=\dot{r}=0\), as asas constumann estar niveladas, \(\phi=0\), consequentemente, da equação \eqref{eq:boeing747-translationsla-dynamics}, temos:
+
+\begin{align}
+  \begin{split}
+    0 &= - mg\sen\theta + \kappa T \cos\theta + X,\\
+    0 &=  Y,\\
+    0 &= mg cos\theta - \kappa T \sen\theta + Z,\\
+    0 &= L = M = N.    
+  \end{split}
+  \label{eq:}
+\end{align}
+
+meu objetivo é chegar nesse resultado pela expasão de Taylor da dinâmica total.
+
+Seja a função
+\begin{align}
+  \label{eq:ode-geral}
+\dot{y}=f(y,u)
+\end{align}
+com \(f:\mathbb{R}\times\mathbb{R}\to\mathbb{R}\) e o ponto de interesse \((y_{0},u_{0})\), tal que \((y,u)=(y_{0}+\bar{y}, u_{0}+\bar{u})\), onde \(\bar{y}\) representa uma pequena variação na vizinhança de \(y_{0}\) e \(\bar{u}\) uma pequena variação na vizinhança de \(u_{0}\). A expansão da série de Taylor ao redor de \((y_{0}, u_{0})\) é dada por \cite{CalculoVol22021}:
+\begin{align}
+  f(y,u)=f(y_{0},u_{0})+\sum_{n=1}^{\infty}\dfrac{1}{n!}\left[(y-y_{0})\dfrac{\partial}{\partial y} + (u-u_{0})\dfrac{\partial}{\partial u}\right]^{n}f(y_{0},u_{0})
+  \label{eq:serie-taylor-f-escalar}
+\end{align}
+
+Os  primeiros termos da série podem ser escritor na forma matricial na forma:
+
+\begin{align}
+  f(y,u) \approx f(y_{0},u_{0}) + \nabla f(y_{0},u_{0})^{T}\mathbf{z} + \dfrac{1}{2} \mathbf{z}^{T}H_{f}(y_{0},u_{0})\mathbf{z}.
+  \label{eq:serie-taylor-vetorial}
+\end{align}
+onde \(\mathbf{z}=(y-y_{0},u-u_{0})^{T}\).
+
+Agora, seja \eqref{eq:ode-geral} com \(f:\mathbb{R}^{n}\times\mathbb{R}^{m}\to\mathbb{R}^{n}\), tal que \(f=(f_{1},\ldots,f_{n})\), onde \(f_{i}:\mathbb{R}^{n}\times\mathbb{R}^{m}\to\mathbb{R}\). Temos que a expansão da série de Taylor para cada \(f_{i}\) é dada por:
+\begin{align}
+  f_{i}(y,u)=f_{i}(y_{0},u_{0})+\sum_{n=1}^{\infty}\dfrac{1}{n!}\left[\left(\dfrac{\partial }{\partial y}\right)^{T}(y-y_{0}) + \left(\dfrac{\partial}{\partial u}\right)^{T}(u-u_{0})\right]^{n}f_{i}(y_{0},u_{0})
+  \label{eq:serie-taylor-fi}
+\end{align}
+desdobrando os dois primeiros dos termos da série temos:
+\begin{align}
+  \begin{split}
+    f_{i}(y,u)&=f_{i}(y_{0},u_{0})+\left(\dfrac{\partial f_{i}(y_{0},u_{0})}{\partial y}\right)^{T}(y-y_{0}) + \left(\dfrac{\partial f_{i}(y_{0},u_{0})}{\partial u}\right)^{T}(u-u_{0})\\
+              & + \dfrac{1}{2}\bigg[(y-y_{0})^{T}\left(\dfrac{\partial^{2} f_{i}(y_{0},u_{0})}{\partial y^{2}}\right)(y-y_{0}) + 2(y-y_{0})^{T}\left(\dfrac{\partial^{2}f_{i}(y_{0},u_{0})}{\partial y\partial u}\right)(u-u_{0})\\
+    &+  (u-u_{0})^{T}\left(\dfrac{\partial^{2} f_{i}(y_{0},u_{0})}{\partial u^{2}}\right)(u-u_{0})\bigg] + \ldots
+  \end{split}
+  \label{eq:serie-taylor-fi-expanded}
+\end{align}
+Lembrando que \(y=(y_{1},\dots,y_{n})\)$^{T}$ and \(u=(u_{1},\ldots,u_{m})^{T}\). Cada termo na equação \eqref{eq:serie-taylor-fi-expanded} é definido da seguinte forma:
+\begin{align}
+  \dfrac{\partial f_{i}(y_{0},u_{0})}{\partial y}=\left(\dfrac{\partial f_{i}}{\partial y_{1}},\ldots,\dfrac{\partial f_{i}}{\partial y_{n}}\right)^{T}_{(y_{0},u_{0})}
+  \label{eq:jacobian-y}
+\end{align}
+\begin{align}
+  \dfrac{\partial f_{i}(y_{0},u_{0})}{\partial u}=\left(\dfrac{\partial f_{i}}{\partial u_{1}},\ldots,\dfrac{\partial f_{i}}{\partial u_{m}}\right)^{T}_{(y_{0},u_{0})}
+  \label{eq:jacobian-u}
+\end{align}
+\renewcommand{\arraystretch}{2.5}
+\begin{align}
+  \dfrac{\partial^{2} f_{i}(y_{0},u_{0})}{\partial y^{2}} =
+  \begin{bmatrix}
+    \dfrac{\partial^{2} f_{i}}{\partial y^{2}_{1}}&\dfrac{\partial^{2} f_{i}}{\partial y_{1}y_{2}}&\ldots&\dfrac{\partial^{2} f_{i}}{\partial y_{1}y_{n}}\\
+    \dfrac{\partial^{2} f_{i}}{\partial y_{2}y_{1}}&\dfrac{\partial^{2} f_{i}}{\partial y_{2}^{2}}&\ldots&\dfrac{\partial^{2} f_{i}}{\partial y_{2}y_{n}}\\
+    \vdots &\vdots&\ddots&\vdots\\
+    \dfrac{\partial^{2} f_{i}}{\partial y_{n}y_{1}}&\dfrac{\partial^{2} f_{i}}{\partial y_{n}y_{2}}&\ldots&\dfrac{\partial^{2} f_{i}}{\partial y_{n}^{2}}\\
+  \end{bmatrix}_{(y_{0},u_{0})}
+  \label{eq:hessian-yy}
+\end{align}
+\begin{align}
+  \dfrac{\partial^{2} f_{i}(y_{0},u_{0})}{\partial y\partial u} =
+  \begin{bmatrix}
+    \dfrac{\partial^{2} f_{i}}{\partial y_{1}u_{1}}&\dfrac{\partial^{2} f_{i}}{\partial y_{1}u_{2}}&\ldots&\dfrac{\partial^{2} f_{i}}{\partial y_{1}u_{m}}\\
+\dfrac{\partial^{2} f_{i}}{\partial y_{2}u_{1}}&\dfrac{\partial^{2} f_{i}}{\partial y_{2}u_{2}}&\ldots&\dfrac{\partial^{2} f_{i}}{\partial y_{2}u_{m}}\\
+    \vdots &\vdots&\ddots&\vdots\\
+\dfrac{\partial^{2} f_{i}}{\partial y_{n}u_{1}}&\dfrac{\partial^{2} f_{i}}{\partial y_{n}u_{2}}&\ldots&\dfrac{\partial^{2} f_{i}}{\partial y_{n}u_{m}}\\
+  \end{bmatrix}_{(y_{0},u_{0})}
+  \label{eq:hessian-yu}
+\end{align}
+\begin{align}
+  \dfrac{\partial^{2} f_{i}(y_{0},u_{0})}{\partial u^{2}} =
+  \begin{bmatrix}
+    \dfrac{\partial^{2} f_{i}}{\partial u^{2}_{1}}&\dfrac{\partial^{2} f_{i}}{\partial u_{1}u_{2}}&\ldots&\dfrac{\partial^{2} f_{i}}{\partial u_{1}u_{m}}\\
+    \dfrac{\partial^{2} f_{i}}{\partial u_{2}u_{1}}&\dfrac{\partial^{2} f_{i}}{\partial u_{2}^{2}}&\ldots&\dfrac{\partial^{2} f_{i}}{\partial u_{2}u_{m}}\\
+    \vdots &\vdots&\ddots&\vdots\\
+    \dfrac{\partial^{2} f_{i}}{\partial u_{m}u_{1}}&\dfrac{\partial^{2} f_{i}}{\partial u_{m}u_{2}}&\ldots&\dfrac{\partial^{2} f_{i}}{\partial u_{m}^{2}}\\
+  \end{bmatrix}_{(y_{0},u_{0})}
+  \label{eq:hessian-uu}
+\end{align}
+
+
+% ou em notação vetorial,
+% \begin{align}
+%   f_{i}(y,u)=f_{i}(y_{0},u_{0})+\sum_{n=1}^{\infty}\dfrac{1}{n!}\left[\nabla f_{y}(y_{0},u_{0})^{T}(y-y_{0}) + \nabla f_{u}(y_{0},u_{0})^{T} (u-u_{0})\right]^{n}
+%   \label{eq:serie-taylor-fi-vetorial}
+% \end{align}
+
+
+
+
 \bibliographystyle{plain}
 \bibliography{referencias}
 
 \end{document}
+

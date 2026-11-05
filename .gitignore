@@ -40,3 +40,6 @@ Thumbs.db
 # Python virtual environments
 .venv/
 python/__pycache__/
+__pycache__/
+*.egg-info/
+.pytest_cache/

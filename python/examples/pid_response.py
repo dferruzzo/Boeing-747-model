@@ -1,4 +1,4 @@
-from controllers import PidDiscreteStandardFiltered
+from boeing747.controllers import PidDiscreteStandardFiltered
 from runge_kutta import State, rk4, Derivative
 import numpy as np
 from numpy.typing import NDArray

@@ -191,7 +191,7 @@ class Boeing747TranslationalDynamics:
         t : float
             Time (s).
         y : array_like, shape (3,)
-            State vector [U, V, M].
+            State vector [u, v, w].
         y_euler: array_like, shape (3,)
             Euler angles [phi, theta, psi].
         y_rates: array_like, shape (3,)
@@ -207,9 +207,9 @@ class Boeing747TranslationalDynamics:
 
         y_state = np.asarray(y, dtype=np.float64)
 
-        U = cast(np.float64, y_state[0])
-        V = cast(np.float64, y_state[1])
-        W = cast(np.float64, y_state[2])
+        u = cast(np.float64, y_state[0])
+        v = cast(np.float64, y_state[1])
+        w = cast(np.float64, y_state[2])
 
         y_euler_state = np.asarray(y_euler, dtype=np.float64)
 
@@ -238,11 +238,11 @@ class Boeing747TranslationalDynamics:
         # Differential equations
         # --------------------------------------------------
 
-        dU = -g*np.sin(theta) + (1/m)*kappa*T*np.cos(theta) + X/m - q*W + r*V
-        dV = g*np.cos(theta)*np.sin(phi) + Y/m - r*U + p*W
-        dW = g*np.cos(theta)*np.cos(phi) - (1/m)*kappa*T*np.sin(theta) + Z/m - p*V + q*U
+        du = -g*np.sin(theta) + (1/m)*kappa*T*np.cos(theta) + X/m - q*w + r*v
+        dv = g*np.cos(theta)*np.sin(phi) + Y/m - r*u + p*w
+        dw = g*np.cos(theta)*np.cos(phi) - (1/m)*kappa*T*np.sin(theta) + Z/m - p*v + q*u
 
-        return np.array([dU, dV, dW])
+        return np.array([du, dv, dw])
 
 class Boeing747FullDynamics:
     pass
